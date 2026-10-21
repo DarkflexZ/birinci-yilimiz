@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Birinci Yılımız</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#030714;--navy:#08102a;--mid:#101c45;--silver:#e4ebff;--dim:#8d9ac2;--gold:#d9bd86;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost','Helvetica Neue',Arial,sans-serif;--ease:cubic-bezier(.22,.8,.24,1);--gy:30%}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--silver);font:300 1.02rem/1.8 var(--sans);letter-spacing:.015em;overflow-x:hidden}
+/* ışık katmanları: sabit atmosfer, film greni, vinyet */
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(60% 50% at 50% var(--gy),rgba(28,48,120,.55),transparent 70%),radial-gradient(40% 30% at 85% calc(100% - var(--gy)),rgba(217,189,134,.07),transparent 70%),linear-gradient(#030714,#08102a 55%,#050b20)}
+body:after{content:"";position:fixed;inset:0;z-index:20;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body:before{content:"";position:fixed;inset:0;z-index:19;pointer-events:none;background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(2,4,12,.75))}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#bar{position:fixed;top:0;left:0;right:0;height:1px;z-index:30;background:var(--gold);transform-origin:left;transform:scaleX(0);opacity:.7}
+main{position:relative;z-index:2}
+section{position:relative;min-height:100svh;padding:20vh 7vw 16vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+section+section:before{content:"";position:absolute;top:0;left:50%;width:1px;height:12vh;background:linear-gradient(transparent,rgba(217,189,134,.6))}
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.05}
+h2{font-size:clamp(2.6rem,7.5vw,5.4rem);text-align:center;margin-bottom:1.4rem;letter-spacing:-.01em}
+.sub{font:italic 300 clamp(1.15rem,2.4vw,1.5rem)/1.5 var(--serif);color:var(--dim);text-align:center;max-width:32rem;margin-bottom:5rem}
+.rv{opacity:0;filter:blur(10px);transform:translateY(30px);transition:opacity 1.6s var(--ease),filter 1.6s var(--ease),transform 1.6s var(--ease)}
+.rv.in{opacity:1;filter:none;transform:none}
+h2.rv{opacity:1;filter:none;transform:none}
+.hw{display:inline-block;overflow:hidden;padding:0 .04em .14em;margin-bottom:-.14em;vertical-align:bottom}
+.hw>span{display:inline-block;opacity:0;transform:translate3d(0,105%,0);filter:blur(8px);transition:transform 1.5s var(--ease),opacity 1.3s ease,filter 1.3s ease;transition-delay:calc(var(--i)*.13s)}
+h2.in .hw>span{opacity:1;transform:none;filter:none}
+.dg .nt:nth-child(2){transition-delay:.15s}.dg .nt:nth-child(3){transition-delay:.3s}
+.sample{font-size:.78rem;color:var(--gold);opacity:.7;margin-top:1.5rem;text-align:center;max-width:30rem}
+/* açılış: gece gökyüzü, hale, sıralı isimler, ışık çizgisi, buton */
+#hero{text-align:center;overflow:hidden}
+#hero>:not(.halo){position:relative;z-index:1}
+.halo{position:absolute;inset:0;margin:auto;width:min(110vw,820px);height:min(110vw,820px);pointer-events:none;z-index:0;border-radius:50%;background:radial-gradient(circle,rgba(217,189,134,.07),rgba(44,70,160,.34) 22%,rgba(30,50,120,.12) 48%,transparent 70%);animation:halo 3.6s var(--ease) .3s both,breathe 10s ease-in-out 4.2s infinite}
+@keyframes halo{from{opacity:0;transform:scale(.86)}}
+@keyframes breathe{50%{opacity:.8;transform:scale(1.04)}}
+#hero h1{font-size:clamp(3.4rem,13vw,9.5rem);letter-spacing:-.02em;font-weight:300}
+.nm{display:block}
+.ln{display:block;width:min(52vw,300px);height:1px;margin:clamp(.7rem,2.2vh,1.5rem) auto;background:linear-gradient(90deg,transparent,rgba(240,222,170,.95),transparent);box-shadow:0 0 18px rgba(217,189,134,.5)}
+.date{margin:2.6rem 0 .5rem;font:300 1.15rem var(--serif);letter-spacing:.28em;color:var(--gold)}
+.tag{font:italic 300 clamp(1.2rem,2.8vw,1.6rem)/1.5 var(--serif);color:var(--dim);margin-bottom:3.6rem;max-width:26rem}
+.hl{animation:hl 2.2s var(--ease) both}
+@keyframes hl{from{opacity:0;filter:blur(14px);transform:translate3d(0,12px,0)}}
+.ln.hl{animation-name:ln}
+@keyframes ln{from{opacity:0;transform:scaleX(0)}}
+.btn{position:relative;font:italic 300 1.35rem var(--serif);color:var(--silver);background:none;border:0;padding:1rem 2.4rem;cursor:pointer;pointer-events:none}
+.btn.rdy{pointer-events:auto}
+.btn .bt{position:relative;transition:text-shadow 1s var(--ease),color 1s}
+.shw{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.sheen{position:absolute;top:0;bottom:0;left:0;width:38%;background:linear-gradient(100deg,transparent,rgba(255,240,205,.2),transparent);transform:translateX(-160%) skewX(-18deg);animation:sheen 7s ease-in-out 6.5s infinite}
+@keyframes sheen{0%,55%{transform:translateX(-160%) skewX(-18deg)}100%{transform:translateX(380%) skewX(-18deg)}}
+.btn:before,.btn:after{content:"";position:absolute;left:50%;height:1px;width:30%;background:var(--gold);opacity:.7;transition:width .9s var(--ease);transform:translateX(-50%)}
+.btn:before{top:0}.btn:after{bottom:0}
+.btn:hover:before,.btn:hover:after,.btn:focus-visible:before,.btn:focus-visible:after,.btn.go:before,.btn.go:after{width:100%}
+.btn:focus-visible{outline:none}
+.btn.go .bt{color:#fff;text-shadow:0 0 22px rgba(240,222,170,.85)}
+.p{position:absolute;left:50%;top:50%;width:2px;height:2px;margin:-1px;border-radius:50%;background:#f1e3c0;box-shadow:0 0 6px rgba(241,227,192,.8);pointer-events:none;animation:pf 1.5s var(--ease) var(--d) both}
+@keyframes pf{0%{opacity:0;transform:translate3d(0,0,0) scale(.4)}25%{opacity:1}100%{opacity:0;transform:translate3d(var(--dx),var(--dy),0) scale(1)}}
+/* yıldız haritası */
+.map{width:min(88vw,540px);aspect-ratio:1;filter:drop-shadow(0 0 50px rgba(40,70,170,.35))}
+.map svg{width:100%;height:100%;overflow:visible}
+.map .ring{fill:none;stroke:rgba(228,235,255,.13);stroke-width:.4}
+.map .field{transform-box:view-box;transform-origin:50% 50%;animation:spin 500s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.map .cl{fill:none;stroke:var(--gold);stroke-width:.6;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 4s var(--ease) .8s}
+.map.in .cl{stroke-dashoffset:0}
+.map .st{fill:var(--silver);opacity:0;transition:opacity 2.4s ease 1.2s}
+.map.in .st{opacity:1}
+.map text{fill:var(--dim);font:italic 9px var(--serif)}
+.cap{text-align:center;margin-top:2.6rem;font:300 1.6rem var(--serif)}
+.cap small{display:block;font:300 .85rem var(--sans);color:var(--dim);margin-top:.4rem}
+/* fotoğraf çerçevesi: mat + ince altın çizgi + vinyet */
+.pw{position:relative;overflow:hidden;width:100%;background:var(--navy);box-shadow:0 40px 80px -20px rgba(0,0,0,.7),0 0 0 1px rgba(228,235,255,.08)}
+.pw:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(90% 80% at 50% 45%,transparent 60%,rgba(3,7,20,.45))}
+.pw:after{content:"";position:absolute;inset:12px;z-index:3;pointer-events:none;border:1px solid rgba(217,189,134,.4);transition:inset .9s var(--ease),border-color .9s}
+.pw:hover:after{inset:7px;border-color:rgba(217,189,134,.75)}
+.pw img{width:100%;display:block;object-fit:cover;filter:saturate(.88) contrast(1.04);will-change:transform;scale:1.3;transition:scale 3.2s var(--ease),filter 1.4s}
+.in .pw img{scale:1.12}
+.pw:hover img{scale:1.2;filter:none}
+.v0 .pw img{scale:1!important}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;aspect-ratio:4/5;width:100%;background:radial-gradient(80% 70% at 50% 40%,#16265c,#0a1230);color:var(--dim);font:italic 1.15rem var(--serif);padding:1.5rem}
+/* timeline */
+.tl{position:relative;max-width:960px;width:100%}
+.tl:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(transparent,rgba(217,189,134,.7) 15%,rgba(217,189,134,.7) 85%,transparent);transform:scaleY(var(--tl,0));transform-origin:top}
+.ev{display:grid;grid-template-columns:1fr 1fr;gap:6rem;margin-bottom:9rem;align-items:center;position:relative}
+.ev:before{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3px;border-radius:50%;background:var(--ink);border:1px solid var(--gold);box-shadow:0 0 0 6px rgba(217,189,134,.12);transition:background 1.4s,box-shadow 1.4s}
+.ev.in:before{background:var(--gold);box-shadow:0 0 0 8px rgba(217,189,134,.16)}
+.ev:nth-child(even) .tx{order:2;text-align:left}
+.ev .tx{text-align:right}
+.ev time{font:italic 300 1.15rem var(--serif);color:var(--gold)}
+.ev h3{font-size:clamp(2rem,4vw,2.8rem);margin:.3rem 0 .8rem}
+.ev p{color:var(--dim);max-width:22rem;display:inline-block}
+.ev .pw{max-width:360px}.ev:nth-child(even) .pw{margin-left:auto}
+/* aylar */
+.mo{position:relative;width:min(1040px,100%);margin:0 0 16vh;display:grid;gap:4rem;align-items:center}
+.mo .tx{position:relative}
+.mo .big{position:absolute;z-index:-1;top:-.45em;left:-.1em;font:300 clamp(9rem,24vw,17rem)/1 var(--serif);color:transparent;-webkit-text-stroke:1px rgba(228,235,255,.1);pointer-events:none}
+.mo .nm{font:italic 300 1.2rem var(--serif);color:var(--gold)}
+.mo h3{font-size:clamp(2.2rem,5vw,3.6rem)}
+.mo p{color:var(--dim);max-width:26rem;margin-top:1rem}
+.v0{grid-template-columns:1fr 1fr}
+.v0 .pw{background:#ecedf3;padding:14px 14px 70px;transform:rotate(-2.2deg);box-shadow:0 50px 80px -20px rgba(0,0,0,.8)}
+.v0 .pw:before,.v0 .pw:after{display:none}
+.v0 .ph{background:#dde1ee;color:#4b5782;aspect-ratio:1}
+.v1{grid-template-columns:1fr}.v1 .pw{aspect-ratio:2.35/1}.v1 .pw img,.v1 .ph{height:100%;aspect-ratio:auto}.v1 .tx{text-align:center}.v1 .pw img{object-position:50% 65%}.v1 p{margin-inline:auto}.v1 .big{left:50%;transform:translateX(-50%)}
+.v2{grid-template-columns:1fr 1fr}.v2 .tx{order:-1;text-align:right}.v2 p{margin-left:auto}.v2 .big{left:auto;right:-.1em}.v2 .pw{transform:rotate(1.6deg)}
+.v3{grid-template-columns:.75fr 1.25fr}.v3 .pw{aspect-ratio:3/4}.v3 .pw img,.v3 .ph{height:100%;aspect-ratio:auto}
+.v4{grid-template-columns:1fr 1fr}.v4 .tx{order:-1}.v4 .pw,.v4 .ph{border-radius:999px 999px 0 0}.v4 .pw:after{border-radius:999px 999px 0 0}
+.v5{grid-template-columns:1fr;text-align:center;justify-items:center}.v5 .pw{width:min(400px,100%);border-radius:50%;aspect-ratio:1}.v5 .pw:after{border-radius:50%}.v5 .ph{border-radius:50%;aspect-ratio:1}.v5 .pw img{height:100%}.v5 p{margin-inline:auto}.v5 .big{left:50%;transform:translateX(-50%)}
+/* detaylar */
+.dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:3rem;max-width:1020px;width:100%}
+.nt{padding:2.4rem 0 0;border-top:1px solid rgba(217,189,134,.45);font:300 1.45rem/1.5 var(--serif);transition:opacity 1.6s var(--ease),filter 1.6s var(--ease),transform 1.6s var(--ease),translate .9s var(--ease)}
+.nt:hover{translate:0 -6px}
+.nt small{display:block;font:italic 300 1.05rem var(--serif);color:var(--gold);margin-bottom:.8rem}
+.quote{font:italic 300 clamp(2rem,5vw,3.6rem)/1.25 var(--serif);text-align:center;max-width:44rem;margin:9rem 0 0}
+/* mektup */
+#letter{overflow:hidden}
+.sp{position:absolute;width:2px;height:2px;background:var(--silver);border-radius:50%;animation:tw 5s ease-in-out infinite}
+@keyframes tw{50%{opacity:.1;transform:scale(2.2)}}
+.env{position:relative;width:min(88vw,440px);aspect-ratio:3/2;cursor:pointer;background:none;border:0;transition:transform 1s var(--ease),opacity 1s,filter 1.6s var(--ease)}
+.env .back,.env .front{position:absolute;inset:0;border-radius:3px}
+.env .back{background:linear-gradient(#0f1b44,#16275f);box-shadow:0 50px 90px -10px rgba(0,0,0,.8),0 0 0 1px rgba(228,235,255,.1)}
+.env .front{background:linear-gradient(135deg,#1a2c68 50%,transparent 50%),linear-gradient(225deg,#14245a 50%,transparent 50%);z-index:3}
+.env .flap{position:absolute;left:0;right:0;top:0;height:60%;background:linear-gradient(#22397e,#1a2c68);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform 1.2s var(--ease),z-index 0s .55s;z-index:4}
+.env .seal{position:absolute;left:50%;top:52%;width:50px;height:50px;margin:-25px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f0dcaa,#b99a5c);box-shadow:0 4px 14px rgba(0,0,0,.5);z-index:5;transition:opacity .6s;display:grid;place-items:center;color:#4a3a14;font:italic 1.1rem var(--serif)}
+.env:hover .flap{transform:rotateX(14deg)}
+.env.open .flap{transform:rotateX(180deg);z-index:1}
+.env.open .seal{opacity:0}
+.env.open{transform:translateY(40px) scale(.85);opacity:0;pointer-events:none;position:absolute}
+.hint{margin-top:2.4rem;color:var(--dim);font:italic 1.3rem var(--serif)}
+.paper{display:none;width:min(92vw,660px);padding:clamp(2.4rem,7vw,4.5rem);background:radial-gradient(120% 100% at 50% 0,#f6f2e7,#e6dfcd);color:#1b2342;font:400 clamp(1.2rem,2.6vw,1.45rem)/1.85 var(--serif);box-shadow:0 60px 100px -20px rgba(0,0,0,.8),inset 0 0 60px rgba(150,130,90,.15)}
+.paper.show{display:block;animation:rise 1.8s var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(70px)}}
+.paper p{margin-bottom:1.3em}
+.paper .w{opacity:0;transition:opacity 1s}.paper .w.on{opacity:1}
+.paper .sig{text-align:right;font-style:italic}
+/* final */
+#final{text-align:center;overflow:hidden}
+#final .bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.3;-webkit-mask-image:radial-gradient(80% 70% at 50% 50%,#000 30%,transparent);mask-image:radial-gradient(80% 70% at 50% 50%,#000 30%,transparent)}
+#final>*{position:relative}
+#final h2{font-size:clamp(3rem,10vw,7.5rem);margin:4rem 0 1.4rem}
+#final p{font:italic 300 clamp(1.4rem,3vw,2.1rem)/1.5 var(--serif);max-width:36rem;color:var(--dim)}
+/* müzik */
+#mus{position:fixed;right:max(1.2rem,env(safe-area-inset-right));bottom:max(1.2rem,env(safe-area-inset-bottom));z-index:40;width:48px;height:48px;border-radius:50%;border:1px solid rgba(217,189,134,.45);background:rgba(3,7,20,.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--gold);cursor:pointer;display:grid;place-items:center;padding:0;-webkit-tap-highlight-color:transparent;transition:box-shadow 1s,border-color 1s,opacity .6s}
+#mus svg{width:17px;height:17px;transition:transform .8s var(--ease)}
+#mus .ring{position:absolute;inset:-5px;border-radius:50%;border:1px dashed rgba(217,189,134,.55);opacity:0;transition:opacity 1s;pointer-events:none}
+#mus .eq{position:absolute;bottom:10px;left:50%;margin-left:-5px;display:flex;gap:2px;align-items:flex-end;height:7px;opacity:0;transition:opacity .6s;pointer-events:none}
+#mus .eq i{width:2px;height:2px;background:var(--gold);border-radius:1px}
+#mus.on{border-color:rgba(217,189,134,.85);box-shadow:0 0 26px rgba(217,189,134,.35)}
+#mus.on svg{transform:translateY(-4px)}
+#mus.on .ring{opacity:1;animation:mspin 16s linear infinite}
+#mus.on .eq{opacity:1}
+#mus.on .eq i{animation:meq 1.2s ease-in-out infinite}#mus.on .eq i:nth-child(2){animation-delay:.3s}#mus.on .eq i:nth-child(3){animation-delay:.6s}
+#mus:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+#mus.err{opacity:.4;cursor:help}
+@keyframes mspin{to{transform:rotate(360deg)}}
+@keyframes meq{50%{height:7px}}
+@media(max-width:700px){
+ .rv{filter:blur(4px)}
+ section{padding:16vh 6vw 12vh}
+ .ev{grid-template-columns:1fr;gap:1.6rem;padding-left:2rem;margin-bottom:6rem}.tl:before{left:4px}.ev:before{left:4px}
+ .ev .tx,.ev:nth-child(even) .tx{order:0;text-align:left}.ev:nth-child(even) .pw{margin-left:0}
+ .mo,.v0,.v2,.v3,.v4{grid-template-columns:1fr;gap:2.5rem}.v2 .tx{text-align:left;order:0}.v2 p{margin-left:0}.v2 .big{right:auto;left:-.1em}.v4 .tx{order:0}.v1 .pw{aspect-ratio:4/3}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01s!important;animation-iteration-count:1!important;transition-duration:.01s!important}.rv,.hl{filter:none;transform:none}.hw>span{transform:none!important;opacity:1!important;filter:none!important}.pw img{scale:1.08!important}.map .field{animation:none}.sheen,.p{display:none}}
+</style>
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div id="bar" aria-hidden="true"></div>
+<button id="mus" type="button" aria-label="Müziği aç" aria-pressed="false" title="Müzik"><span class="ring" aria-hidden="true"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<main>
+<section id="hero">
+ <div class="halo" aria-hidden="true"></div>
+ <h1 id="names"></h1>
+ <div class="date hl" id="met" style="animation-delay:3.2s;animation-duration:1.8s"></div>
+ <p class="tag hl" id="tag" style="animation-delay:3.7s;animation-duration:1.8s"></p>
+ <button class="btn hl" id="start" disabled style="animation-delay:4.2s;animation-duration:1.7s"><span class="shw" aria-hidden="true"><span class="sheen"></span></span><span class="bt">Hikâyemizi başlat</span></button>
+</section>
+
+<section id="stars">
+ <h2 class="rv">Tanıştığımız gece</h2>
+ <p class="sub rv">O gece gökyüzü nasıl görünüyordu, yalnızca biz biliyoruz.</p>
+ <div class="map rv" id="map1"></div>
+ <div class="cap rv" id="cap1"></div>
+ <p class="sample rv" id="sample1"></p>
+</section>
+
+<section id="story">
+ <h2 class="rv">Bizim hikâyemiz</h2>
+ <p class="sub rv">Tanışmamızdan bugüne.</p>
+ <div class="tl" id="tl"></div>
+</section>
+
+<section id="months" style="justify-content:flex-start">
+ <h2 class="rv">On iki ay</h2>
+ <p class="sub rv">Her ayın kendine ait bir ışığı vardı.</p>
+ <div id="mogrid" style="width:100%;display:flex;flex-direction:column;align-items:center"></div>
+</section>
+
+<section id="details">
+ <h2 class="rv">Yalnızca bize ait</h2>
+ <p class="sub rv">Küçük şeyler, büyük anlamlar.</p>
+ <div class="dg" id="dg"></div>
+ <div class="quote rv" id="quote"></div>
+ <p class="sample rv"></p>
+</section>
+
+<section id="letter">
+ <h2 class="rv">Birinci yıl mektubuu</h2>
+ <button class="env rv" id="env" aria-label="Zarfı aç"><div class="back"></div><div class="front"></div><div class="flap"></div><div class="seal" id="seal"></div></button>
+ <p class="hint rv" id="hint">Açmak için zarfa dokunun</p>
+ <article class="paper" id="paper"></article>
+</section>
+
+<section id="final">
+ <div class="bg" id="fbg"></div>
+ <div class="map rv" id="map2"></div>
+ <h2 class="rv" id="ftitle"></h2>
+ <p class="rv" id="fclose"></p>
+</section>
+</main>
+<audio id="aud" src="manolya.mp3" loop preload="metadata" playsinline></audio>
+
+<script>
+/* =====================================================
+   KİŞİSELLEŞTİRME — yalnızca bu bölümü düzenle.
+   Fotoğraf: "photo" alanına dosya yolu yaz (ör. "foto/01.jpg").
+   Boş bırakırsan şık bir yer tutucu görünür.
+   ===================================================== */
+const C = {
+  her: "Derya",           // sevgilinin adı
+  me: "Ertuğrul",       // senin adın (açılışta önce görünür)
+  metDate: "24.10.2025", // tanışma tarihi
+  tagline: "Yıldızların altında başlayan hikâyemiz",
+  anniversary: "Birinci yılımız",
+  music: "manolya.mp3", // HTML ile aynı klasörde olmalı
+  finalPhoto: "foto/final.jpg",         // tam ekran son fotoğraf, ör. "foto/favori.jpg"
+  closing: "Bir yıl önce tanıştık. Bundan sonrası, gökyüzünün hâlâ bilmediği sayfalar.",
+
+  /* Yıldız haritası — ÖRNEK VERİ. Gerçek astronomik harita değildir.
+     Gerçek koordinatları bir yıldız haritası servisinden alıp işleyebilirsin.
+     Koordinatlar 0–400 aralığında. */
+  map: {
+    sample: true,
+    place: "Ankara, Türkiye",
+    time: "23 Ekim 2025 · 13:00",
+    coords: "39.93° K · 32.86° D",
+    constellations: [
+      { name: "Birinci", pts: [[110,120],[160,95],[215,110],[250,160],[225,215]] },
+      { name: "İkinci",  pts: [[270,250],[310,225],[345,255],[320,300],[275,305],[270,250]] },
+      { name: "Üçüncü",  pts: [[90,270],[130,300],[120,345],[170,330]] }
+    ]
+  },
+
+  timeline: [
+    { date: "23 Ekim 2025", title: "İlk buluşmamız", text: "Yağmurlu bir akşamda, şemsiyenin altında yan yana durduğumuz ilk kare.", photo: "foto/01.jpg" },
+    { date: "Aralık 2025", title: "Sana aldığım çiçekler", text: "Senin için seçtiğim pembe çiçekler. Seni düşünerek seçmek bile güzeldi.", photo: "foto/02.jpg" },
+    { date: "Mart 2026", title: "Çiçek avı", text: "Senin için en güzel buketi bulmak adına yufusu gün boyu heryere sürüklemiştim.", photo: "foto/03.jpg" },
+    { date: "Bugün", title: "Sürpriz doğum günü", text: "Doğum gününde seni pastayla ve çiçeklerle şaşırttığım an. O gülümsemen ve şaşkınlığın her şeye değdi.", photo: "foto/04.jpg" }
+  ],
+
+  months: [
+    { label: "1. ay",  date: "Kasım 2025",  title: "Merhaba", note: "Bizim için her şey sadece bir oyunla başladı.", photo: "foto/ay01.jpg" },
+    { label: "2. ay",  date: "Aralık 2025", title: "Kış ışığı", note: "İlk soğuk günlerimiz.", photo: "foto/ay02.jpg" },
+    { label: "3. ay",  date: "Ocak 2026",   title: "Yeni yıl", note: "Yeni bir yıl, yeni biz.", photo: "foto/ay03.jpg" },
+    { label: "4. ay",  date: "Şubat 2026",  title: "Sessiz akşamlar", note: "Fotoğraf çekinmek için hala utandığımız anlar.", photo: "foto/ay04.jpg" },
+    { label: "5. ay",  date: "Mart 2026",   title: "Yol", note: "Birlikte çıktığımız ilk yolculuk.", photo: "foto/ay05.jpg" },
+    { label: "6. ay",  date: "Nisan 2026",  title: "Yarım yıl", note: "Yarısına geldik, devamı var.", photo: "foto/ay06.jpg" },
+    { label: "7. ay",  date: "Mayıs 2026",  title: "Bahar", note: "Her şey biraz daha açıldı.", photo: "foto/ay07.jpg" },
+    { label: "8. ay",  date: "Haziran 2026", title: "Uzun günler", note: "Beni kişisel modelin yaptığın akşam :3.", photo: "foto/ay08.jpg" },
+    { label: "9. ay",  date: "Temmuz 2026", title: "Yaz", note: " Birlikte ilk defa buz pateninde kaymıştık (kayamadım :0).", photo: "foto/ay09.jpg" },
+    { label: "10. ay", date: "Ağustos 2026", title: "Gece yürüyüşü", note: " Artık birbirimizin yanında çok daha rahattık.", photo: "foto/ay10.jpg" },
+    { label: "11. ay", date: "Eylül 2026",  title: "Sonbahar", note: "Doğum günüm, pastam, ve bitanemmmmm.", photo: "foto/ay11.jpg" },
+    { label: "12. ay", date: "Ekim 2026",   title: "Bir yıl", note: " ve hâlâ ilk günkü gibi dava çözmekte üstümüze yok.", photo: "foto/ay12.jpg" }
+  ],
+
+  notes: [
+    { tag: "Küçük not", text: "Sadece bizim anlayacağımız bir şaka bulamadığımız için özür dilerim seni çok seviyorum :(" },
+    { tag: "Unutamadığımız an", text: "Sana çıkma teklifi edememem hayatımda daha zor bir anı hatırlamıyorum. El ele tutuşamamamız bir türlü evet heheh (kopyacekmedimkesinlikle)" },
+    { tag: "Bizim şarkımız", text: " PETUNYAAAAA SAĞ ALTTA BAS VE DİNLE BEBEGİMM." }
+  ],
+  oneSentence: "Seninle sessizlik bile konuşur.",
+
+  letter: [
+    "Sevgiliiimmmmmmmm,",
+    " Bir yıl önce her şeyin tam olarak nasıl başladığını düşündüğümde, hâlâ içimde o günkü gibi tatlı bir heyecan uyanıyor. Aslında her şey çok sıradan bir anda başlamıştı; ama o gün, hayatımın yönünün tamamen değişeceğinden ve seninle yollarımızın bu kadar güzel bir şekilde kesişeceğinden habersizdim. Geriye dönüp baktığımda, iyi ki o anlar yaşanmış, iyi ki hayatıma girmişsinn. ",
+    " Gözlerinin içindeki o eşsiz ışık, bana bu hayatta görebileceğim en güzel manzaranın ne olduğunu her gün yeniden öğretiyor. Seninle geçirdiğim her saniye, ruhumun en derin köşesinde çiçekler açtırıyor. O tatlı gülüşün, sesinin huzur veren tonu ve bana baktığın o sevgi dolu gözlerin var ya... Dünyanın en güzel, en değerli hazinesi benim için. Sana sarıldığımda hissettiğim o huzur, başka hiçbir yerde yok. Sen benim bu hayattaki en büyük şansım, kalbimin tek sahibi ve geleceğe umutla bakmamı sağlayan en güzel sebebimsin. İyi ki hayatımdasın, iyi ki benimlesin. Seni dünyalardannn, yıldızlardannn ve kelimelerin bittiği her yerdenn çooooooookkkkk ama çoooooooooook seviyoruuuuuuuuuuuuuuuuuummmmmmmmmmmmmm.",
+    "Biraz erken oldu ama umarım kurabiyendden yemek ve seni görmek için gelemememin telafisi olabilmiştir :))"
+  ],
+  signature: "— Ertuğrul"
+};
+
+/* ================= KOD ================= */
+const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const PH='<div class="ph">Fotoğrafını buraya ekle</div>';
+const img=(p,a)=>p?`<div class="pw"><img src="${p}" alt="${a}" loading="lazy" onerror="this.parentNode.outerHTML=PH"></div>`:`<div class="pw">${PH}</div>`;
+
+$('#names').innerHTML=`<span class="nm hl" style="animation-duration:2.4s;animation-delay:.7s">${C.me}</span><span class="ln hl" style="animation-duration:1.8s;animation-delay:1.7s" aria-hidden="true"></span><span class="nm hl" style="animation-duration:2.4s;animation-delay:2s">${C.her}</span>`;
+$('#met').textContent=C.metDate;$('#tag').textContent=C.tagline;
+
+/* yıldızlar: 3 derinlik katmanı, farklı kayma ve kaydırma hızları, nadir kayan yıldız */
+const cv=$('#sky'),cx=cv.getContext('2d');let W,H,S=[],last=0,shoot=null,nextShoot=9000,vis=true,T0=0,now=0;
+const LAY=[{n:.5,r:.5,a:.35,sc:.02,dr:4,c:'#9fb0e0'},{n:.35,r:.9,a:.6,sc:.07,dr:9,c:'#e4ebff'},{n:.15,r:1.5,a:.9,sc:.16,dr:16,c:'#f1e3c0'}];
+function size(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);const N=W<700?110:230;S=[];LAY.forEach((l,k)=>{for(let i=0;i<N*l.n;i++)S.push({x:Math.random()*W,y:Math.random()*H,k,p:Math.random()*6.28,f:.4+Math.random()*.9})});frame(now)}
+function frame(t){cx.clearRect(0,0,W,H);const sy=scrollY;
+  for(const s of S){const l=LAY[s.k],x=RM?s.x:((s.x+t*.001*l.dr)%W+W)%W,y=((s.y-sy*l.sc)%H+H)%H;cx.globalAlpha=l.a*(RM?1:(.55+.45*Math.sin(t/1000*s.f+s.p))*Math.min(1,Math.max(0,(t-T0-300-s.k*700)/2400)));cx.fillStyle=l.c;cx.beginPath();cx.arc(x,y,l.r,0,6.283);cx.fill()}
+  if(shoot){const k=(t-shoot.t)/1100;if(k>=1)shoot=null;else{const x=shoot.x+shoot.dx*k,y=shoot.y+shoot.dy*k,tx=x-shoot.dx*.12,ty=y-shoot.dy*.12,g=cx.createLinearGradient(x,y,tx,ty);g.addColorStop(0,'rgba(240,230,200,'+.8*(1-k)+')');g.addColorStop(1,'rgba(240,230,200,0)');cx.globalAlpha=1;cx.strokeStyle=g;cx.lineWidth=1.2;cx.beginPath();cx.moveTo(x,y);cx.lineTo(tx,ty);cx.stroke()}}}
+function loop(t){if(!vis)return;if(!T0)T0=t;now=t;if(t-last>(W<700?33:16)){last=t;frame(t);if(t>nextShoot&&!shoot){shoot={t,x:Math.random()*W*.7,y:Math.random()*H*.4,dx:W*.25,dy:H*.12};nextShoot=t+14000+Math.random()*12000}}requestAnimationFrame(loop)}
+addEventListener('resize',()=>{if(innerWidth===W&&Math.abs(innerHeight-H)<150)return;size()});
+document.addEventListener('visibilitychange',()=>{vis=!document.hidden;if(vis&&!RM)requestAnimationFrame(loop)});
+size();if(!RM)requestAnimationFrame(loop);
+
+/* kaydırma: ilerleme çizgisi, ışık, açılış parallax'ı, fotoğraf parallax'ı, timeline çizgisi */
+const bar=$('#bar'),hero=$('#hero'),names=$('#names'),root=document.documentElement,tl=$('#tl'),vp=new Set();let tk=0;
+if(RM)tl.style.setProperty('--tl',1);
+function px(){const vh=innerHeight;vp.forEach(p=>{const i=p.firstElementChild;if(!i||i.tagName!=='IMG')return;const r=p.getBoundingClientRect(),o=Math.max(-1,Math.min(1,(r.top+r.height/2-vh/2)/vh));i.style.transform=`translate3d(0,${(-o*r.height*.05).toFixed(1)}px,0)`})}
+function onScroll(){if(tk)return;tk=requestAnimationFrame(()=>{tk=0;const m=root.scrollHeight-innerHeight,p=m>0?scrollY/m:0;bar.style.transform=`scaleX(${p})`;root.style.setProperty('--gy',(20+p*60)+'%');
+  if(RM){frame(0);return}
+  hero.style.opacity=Math.max(0,1-scrollY/(innerHeight*.9));names.style.transform=`translate3d(0,${(scrollY*.18).toFixed(1)}px,0)`;
+  const r=tl.getBoundingClientRect();tl.style.setProperty('--tl',Math.max(0,Math.min(1,(innerHeight*.6-r.top)/r.height)).toFixed(3));px()})}
+addEventListener('scroll',onScroll,{passive:true});
+
+/* kontrollü, kesintisiz kaydırma (çift kaydırma olmaması için CSS smooth geçici kapatılır) */
+function glide(to,dur,cb){
+  const from=scrollY,d=to-from;
+  if(RM||dur<=0||Math.abs(d)<2){root.style.scrollBehavior='auto';scrollTo(0,to);root.style.scrollBehavior='';if(cb)cb();return}
+  root.style.scrollBehavior='auto';
+  const t0=performance.now(),ev=['wheel','touchstart','keydown','mousedown'];let id,fin0=false;
+  const fin=ok=>{if(fin0)return;fin0=true;cancelAnimationFrame(id);ev.forEach(e=>removeEventListener(e,stop));root.style.scrollBehavior='';if(ok)scrollTo(0,to);if(cb)cb()};
+  const stop=()=>fin(false);
+  ev.forEach(e=>addEventListener(e,stop,{passive:true}));
+  const step=t=>{const k=Math.min(1,(t-t0)/dur),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;scrollTo(0,from+d*e);if(k<1)id=requestAnimationFrame(step);else fin(true)};
+  id=requestAnimationFrame(step);
+}
+
+/* açılış etkileşimi */
+const btn=$('#start');let introDone=false,busy=false,done=false;
+const ready=()=>{if(introDone)return;introDone=true;btn.disabled=false;btn.classList.add('rdy')};
+btn.addEventListener('animationend',e=>{if(e.target===btn&&e.animationName==='hl')ready()});
+setTimeout(ready,7500);
+/* açılış sürerken dokunan kullanıcı için animasyon yumuşakça hızlanır */
+hero.addEventListener('pointerdown',()=>{if(introDone)return;try{hero.getAnimations({subtree:true}).forEach(a=>{if(a.effect&&a.effect.getTiming().iterations===1)a.updatePlaybackRate(5)})}catch(_){}},{passive:true,once:true});
+function burst(){if(RM)return;const n=innerWidth<700?12:18;for(let i=0;i<n;i++){const a=Math.random()*6.283,r=50+Math.random()*90,e=document.createElement('i');e.className='p';e.style.cssText=`--dx:${(Math.cos(a)*r*1.5).toFixed(0)}px;--dy:${(Math.sin(a)*r*.8-10).toFixed(0)}px;--d:${(Math.random()*.5).toFixed(2)}s`;btn.appendChild(e);setTimeout(()=>e.remove(),2300)}}
+btn.addEventListener('click',()=>{
+  if(busy)return;
+  const to=Math.round($('#stars').getBoundingClientRect().top+scrollY);
+  if(done){glide(to,1400);return}
+  busy=true;btn.classList.add('go');btn.setAttribute('aria-disabled','true');burst();
+  setTimeout(()=>glide(to,1800,()=>{btn.classList.remove('go');busy=false;done=true;onScroll()}),RM?0:900);
+});
+
+/* yıldız haritası */
+function drawMap(el){
+  let r=7;const rnd=()=>(r=(r*16807)%2147483647)/2147483647;
+  let f='';for(let i=0;i<150;i++){const a=rnd()*6.283,d=Math.sqrt(rnd())*175;f+=`<circle cx="${200+Math.cos(a)*d}" cy="${200+Math.sin(a)*d}" r="${.3+rnd()*.7}" fill="#e4ebff" opacity="${.2+rnd()*.5}"/>`}
+  let g='';[60,120,180].forEach(v=>g+=`<circle class="ring" cx="200" cy="200" r="${v}"/>`);
+  for(let a=0;a<180;a+=30){const x=Math.cos(a*Math.PI/180)*180,y=Math.sin(a*Math.PI/180)*180;g+=`<line class="ring" x1="${200-x}" y1="${200-y}" x2="${200+x}" y2="${200+y}"/>`}
+  let c='';for(const k of C.map.constellations){c+=`<path class="cl" pathLength="1" d="M${k.pts.map(p=>p.join(' ')).join(' L')}"/>`;
+    k.pts.forEach(p=>c+=`<circle class="st" cx="${p[0]}" cy="${p[1]}" r="2.2"/>`);c+=`<text x="${k.pts[0][0]-8}" y="${k.pts[0][1]-10}">${k.name}</text>`}
+  el.innerHTML=`<svg viewBox="0 0 400 400" role="img" aria-label="Yıldız haritası${C.map.sample?' (örnek veri)':''}"><g class="field">${f}</g>${g}<circle class="ring" cx="200" cy="200" r="190" style="stroke:rgba(217,189,134,.5)"/>${c}</svg>`;
+}
+drawMap($('#map1'));drawMap($('#map2'));
+$('#cap1').innerHTML=`${C.map.place}<small>${C.map.time} · ${C.map.coords}</small>`;
+$('#sample1').textContent=C.map.sample?'':'';
+
+/* zaman çizgisi */
+$('#tl').innerHTML=C.timeline.map(e=>`<div class="ev rv"><div class="tx"><time>${e.date}</time><h3>${e.title}</h3><p>${e.text}</p></div>${img(e.photo,e.title)}</div>`).join('');
+
+/* aylar */
+const LY=[0,1,2,3,4,5,0,1,5,2,4,0]; /* her ayın düzeni: 0 polaroid, 1 geniş şerit, 2 eğik, 3 dikey, 4 kemer, 5 yuvarlak */
+$('#mogrid').innerHTML=C.months.map((m,i)=>`<div class="mo v${LY[i]??i%6} rv">${img(m.photo,m.title)}<div class="tx"><span class="big" aria-hidden="true">${i+1}</span><div class="nm">${m.label} · ${m.date}</div><h3>${m.title}</h3><p>${m.note}</p></div></div>`).join('');
+
+/* detaylar */
+$('#dg').innerHTML=C.notes.map(n=>`<div class="nt rv"><small>${n.tag}</small>${n.text}</div>`).join('');
+$('#quote').textContent='“'+C.oneSentence+'”';
+
+/* mektup */
+$('#seal').textContent=C.her[0]+C.me[0];
+$('#paper').innerHTML=C.letter.map(t=>`<p>${t.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ')}</p>`).join('')+`<p class="sig">${C.signature}</p>`;
+const lt=$('#letter');for(let i=0;i<28;i++){const s=document.createElement('i');s.className='sp';s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*5}s`;lt.appendChild(s)}
+$('#env').onclick=()=>{$('#env').classList.add('open');$('#hint').style.display='none';
+  setTimeout(()=>{const p=$('#paper');p.classList.add('show');const ws=[...p.querySelectorAll('.w')];
+    if(RM)return ws.forEach(w=>w.classList.add('on'));ws.forEach((w,i)=>setTimeout(()=>w.classList.add('on'),i*110+600))},RM?0:1000)};
+
+/* final */
+$('#ftitle').textContent=C.anniversary;$('#fclose').textContent=C.closing;
+if(C.finalPhoto){const t=new Image();t.onload=()=>{$('#fbg').style.backgroundImage=`url("${C.finalPhoto}")`};t.src=C.finalPhoto}
+
+/* başlıklar: kelime kelime belirir */
+document.querySelectorAll('h2').forEach(h=>{let n=0;h.innerHTML=h.textContent.split(' ').map(w=>`<span class="hw"><span style="--i:${n++}">${w}</span></span>`).join(' ')});
+
+/* scroll reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+
+/* fotoğraf parallax: yalnızca ekrandaki kareler izlenir */
+const pio=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?vp.add(e.target):vp.delete(e.target));px()},{rootMargin:'15% 0px'});
+if(!RM)document.querySelectorAll('.pw').forEach(p=>{if(p.querySelector('img')&&!p.closest('.v0'))pio.observe(p)});
+onScroll();
+
+/* müzik: yalnızca kullanıcı dokunuşuyla başlar; tek ses öğesi sayfa boyunca kesilmeden çalar */
+const a=$('#aud'),mb=$('#mus');let mBusy=false;
+a.volume=.35;a.loop=true;
+if(C.music&&a.getAttribute('src')!==C.music)a.src=C.music;
+const mUi=on=>{mb.classList.toggle('on',on);mb.setAttribute('aria-pressed',on);mb.setAttribute('aria-label',on?'Müziği durdur':'Müziği aç')};
+a.addEventListener('play',()=>mUi(true));
+a.addEventListener('pause',()=>mUi(false));
+a.addEventListener('error',()=>{mb.classList.add('err');mb.title='Müzik dosyası bulunamadı: manolya.mp3 dosyasını HTML ile aynı klasöre koy'});
+mb.addEventListener('click',()=>{
+  if(mBusy)return;
+  if(!a.paused){a.pause();return}
+  mBusy=true;
+  Promise.resolve(a.play()).catch(()=>{}).then(()=>{mBusy=false});
+});
+</script>
+</body>
+</html>
